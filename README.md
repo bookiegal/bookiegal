@@ -1,11 +1,11 @@
-- 👋 Hi, I’m @bookiegal
-- 👀 I’m interested in figuring out my way in the vast jungles of programming 
-- 🌱 I’m currently learning bioinformatics
-- 💞️ I’m looking to collaborate on bioinformatics
-- 📫 How to reach me
+-  Hi, I’m @bookiegal
+-  I’m interested in figuring out my way in the vast jungles of programming 
+-  I’m currently learning bioinformatics
+-  I’m looking to collaborate on bioinformatics
+-  How to reach me
 - my email : jiahsoni21@gmail.com
 
-- 😄 Pronouns: she/her
+-  Pronouns: she/her
 
 
 
