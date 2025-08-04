@@ -3,8 +3,8 @@
 - 🌱 I’m currently learning bioinformatics
 - 💞️ I’m looking to collaborate on bioinformatics
 - 📫 How to reach me
-- my email : dj28032003@gmail.com
-- my blog : https://bookieslilcorner.blogspot.com/
+- my email : jiahsoni21@gmail.com
+
 - 😄 Pronouns: she/her
 
 
