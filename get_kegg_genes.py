@@ -33,7 +33,7 @@ def get_genes_from_kegg_kgml(pathway_id):
     return df
 
 if __name__ == "__main__":
-    pathway_id = "hsa03430"
+    pathway_id = input("enter pathway id: ")
     df = get_genes_from_kegg_kgml(pathway_id)
     df.to_excel(f"{pathway_id}_kgml.xlsx", index=False)
     print(f"Saved {pathway_id}_kgml.xlsx with {len(df)} genes.")
