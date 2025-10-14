@@ -3,7 +3,7 @@
 - 🌱 I’m currently learning bioinformatics
 - 💞️ I’m looking to collaborate on bioinformatics
 - 📫 How to reach me
-- my email : jiahsoni21@gmail.com
+- my email : khushi.udasi2803@gmail.com
 
 - 😄 Pronouns: she/her
 
