@@ -1,78 +1,67 @@
 def apply_snps_to_protein(sequence, snps):
-    """
-    Applies SNP-based amino acid substitutions to a canonical protein sequence.
-
-    Parameters:
-    sequence (str): Canonical protein sequence
-    snps (list of tuples): [(position, ref_aa, alt_aa), ...]
-
-    Returns:
-    str: Mutated protein sequence
-    """
-
-    seq_list = list(sequence)
+    seq = list(sequence)
 
     for pos, ref, alt in snps:
-        index = pos - 1  # Convert to 0-based indexing
+        idx = pos - 1
 
-        if index < 0 or index >= len(seq_list):
-            raise ValueError(f"Position {pos} out of range.")
-
-        if seq_list[index] != ref:
+        if idx < 0 or idx >= len(seq):
             raise ValueError(
-                f"Reference mismatch at position {pos}: "
-                f"expected {ref}, found {seq_list[index]}"
+                f"Position {pos} out of range (sequence length = {len(seq)})"
             )
 
-        seq_list[index] = alt
+        if seq[idx] != ref:
+            raise ValueError(
+                f"Reference mismatch at position {pos}: "
+                f"expected {ref}, found {seq[idx]}"
+            )
 
-    return "".join(seq_list)
+        seq[idx] = alt
+
+    return "".join(seq)
 
 
-def get_user_input():
-    """
-    Collects protein sequence and SNP information from the user.
-    """
+print("=== Protein SNP Substitution Tool ===\n")
 
-    sequence = input("Enter canonical protein sequence:\n").strip().upper()
+# 🔹 Read MULTI-LINE protein sequence
+print("Enter canonical protein sequence (paste sequence; press ENTER on empty line to finish):")
 
-    n = int(input("Enter number of SNPs: "))
+sequence_lines = []
+while True:
+    line = input().strip()
+    if line == "":
+        break
+    sequence_lines.append(line)
 
-    snps = []
-    print("\nEnter SNPs in the format: Position Reference_AA Alternate_AA")
-    print("Example: 50 A T\n")
+protein_seq = "".join(sequence_lines).upper()
 
-    for i in range(n):
+print(f"\nSequence length detected: {len(protein_seq)} amino acids")
+
+# 🔹 Read number of SNPs
+while True:
+    n = input("Enter number of SNPs: ")
+    if n.isdigit():
+        n = int(n)
+        break
+    print("❌ Please enter a number.")
+
+# 🔹 Read SNPs
+snps = []
+print("\nEnter SNPs in format: position reference_AA alternate_AA")
+print("Example: 499 N S\n")
+
+for i in range(n):
+    while True:
         entry = input(f"SNP {i+1}: ").split()
+        if len(entry) == 3 and entry[0].isdigit():
+            snps.append((int(entry[0]), entry[1].upper(), entry[2].upper()))
+            break
+        print("❌ Invalid format. Try again.")
 
-        if len(entry) != 3:
-            raise ValueError("Each SNP must have 3 values: position ref alt")
+# 🔹 Apply mutations
+mutant_seq = apply_snps_to_protein(protein_seq, snps)
 
-        pos = int(entry[0])
-        ref = entry[1].upper()
-        alt = entry[2].upper()
+print("\nCanonical sequence:")
+print(protein_seq)
 
-        snps.append((pos, ref, alt))
-
-    return sequence, snps
-
-
-def main():
-    print("=== Protein SNP Substitution Tool ===\n")
-
-    try:
-        sequence, snps = get_user_input()
-        mutant_sequence = apply_snps_to_protein(sequence, snps)
-
-        print("\nCanonical Sequence:")
-        print(sequence)
-
-        print("\nMutant Sequence:")
-        print(mutant_sequence)
-
-    except Exception as e:
-        print("\nError:", e)
-
-
-if __name__ == "__main__":
-    main()
+print("\nMutant sequence:")
+print(mutant_seq)
